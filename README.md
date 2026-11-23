@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="docs/icon.png" width="128" alt="ScreenOff app icon">
-
 # ScreenOff
+
+<img src="docs/social-preview.png" width="720" alt="ScreenOff: sleep your Mac's display, keep your agents running. The menu bar panel with a Sleep Display button and a brightness slider.">
 
 **Turn off your Mac's screen from the menu bar with one click, and change the brightness of any monitor.**
 Your Mac keeps running: downloads, music and builds carry on while the display sleeps.
@@ -10,11 +10,6 @@ Your Mac keeps running: downloads, music and builds carry on while the display s
 [**Download ScreenOff for macOS**](https://github.com/codeclawd/screenoff-mac/releases/latest/download/ScreenOff.dmg)
 
 Free and open source · macOS 14 or later · Apple silicon and Intel · under 1 MB
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/panel-dark.png">
-  <img src="docs/panel-light.png" width="320" alt="The ScreenOff panel under its menu bar icon, with a Sleep Display button">
-</picture>
 
 </div>
 
