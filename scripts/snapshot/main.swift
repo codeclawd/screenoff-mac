@@ -1,12 +1,17 @@
 // Renders the real panel view to PNG without a screen (used for the README images).
-// Build: swiftc scripts/snapshot/main.swift Sources/PanelView.swift -o build/snapshot
+// Build: swiftc scripts/snapshot/main.swift Sources/PanelView.swift Sources/Brightness.swift -o build/snapshot
 import AppKit
 import SwiftUI
 
 let app = NSApplication.shared
 app.setActivationPolicy(.prohibited)
+let brightness = BrightnessModel()
+var waited = 0.0
+while brightness.rows.contains(where: { $0.value == nil && !$0.unsupported }) && waited < 5 {
+    RunLoop.current.run(until: Date().addingTimeInterval(0.1)); waited += 0.1
+}
 for (name, appearance) in [("light", NSAppearance.Name.aqua), ("dark", .darkAqua)] {
-    let host = NSHostingView(rootView: SleepPanelView(onSleep: {}, onQuit: {}, opensAtLogin: true, setOpensAtLogin: { $0 })
+    let host = NSHostingView(rootView: SleepPanelView(onSleep: {}, onQuit: {}, opensAtLogin: true, setOpensAtLogin: { $0 }, brightness: brightness)
         .environment(\.controlActiveState, .key))
     host.appearance = NSAppearance(named: appearance)
     let size = host.fittingSize

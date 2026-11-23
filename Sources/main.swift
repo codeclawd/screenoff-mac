@@ -22,6 +22,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var panel: MenuPanel?
     private var clickMonitor: Any?
     private var lastHide = Date.distantPast
+    private lazy var brightness = BrightnessModel()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         guard let button = statusItem.button else { return }
@@ -50,9 +51,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             onSleep: { [weak self] in self?.sleepDisplay() },
             onQuit: { NSApp.terminate(nil) },
             opensAtLogin: [.enabled, .requiresApproval].contains(SMAppService.mainApp.status),
-            setOpensAtLogin: { [weak self] on in self?.setOpensAtLogin(on) ?? false }
+            setOpensAtLogin: { [weak self] on in self?.setOpensAtLogin(on) ?? false },
+            brightness: brightness
         ).environment(\.controlActiveState, .key))
         let size = host.fittingSize
+        brightness.readValues()
 
         let background = NSVisualEffectView(frame: NSRect(origin: .zero, size: size))
         background.material = .popover

@@ -4,7 +4,7 @@
 
 # ScreenOff
 
-**Turn off your Mac's screen from the menu bar with one click.**
+**Turn off your Mac's screen from the menu bar with one click, and change the brightness of any monitor.**
 Your Mac keeps running: downloads, music and builds carry on while the display sleeps.
 
 [**Download ScreenOff for macOS**](https://github.com/codeclawd/screenoff-mac/releases/latest/download/ScreenOff.dmg)
@@ -36,6 +36,8 @@ xattr -dr com.apple.quarantine /Applications/ScreenOff.app
 
 Click the power icon, then **Sleep Display**. Move the mouse or press a key to wake the screen.
 
+Drag a display's slider to change its brightness. This works on external monitors too, which macOS can't dim on its own. ScreenOff talks to the monitor over the cable (DDC/CI), the same way the monitor's own buttons change it.
+
 Tick **Open at Login** in the panel to start ScreenOff with your Mac. Press Esc or click elsewhere to close the panel.
 
 ## Why it doesn't wake right back up
@@ -56,6 +58,9 @@ No. Any user can run `pmset displaysleepnow`. ScreenOff asks for no permissions.
 **Will my Mac lock when the screen turns off?**
 That follows your setting in **System Settings → Lock Screen → Require password after screen saver begins or display is turned off**. ScreenOff doesn't change it.
 
+**Why is there no slider for my monitor?**
+External monitor brightness needs an Apple silicon Mac and a monitor with DDC/CI turned on (check its on-screen menu). Some USB-C docks, DisplayLink adapters and TVs don't pass DDC through. The built-in display of a MacBook always gets a slider.
+
 **My menu bar manager hides the icon.**
 Drag the icon into the visible section of Bartender, Ice or Thaw. With the icon hidden, the panel opens at the top right of the screen.
 
@@ -70,7 +75,11 @@ cd screenoff-mac
 ./make-dmg.sh    # build/ScreenOff.dmg
 ```
 
-The app is about 250 lines of Swift and SwiftUI with no dependencies. `Sources/main.swift` runs the menu bar item and the sleep logic. `Sources/PanelView.swift` draws the panel.
+The app is about 500 lines of Swift and SwiftUI with no dependencies. `Sources/main.swift` runs the menu bar item and the sleep logic. `Sources/Brightness.swift` handles brightness. `Sources/PanelView.swift` draws the panel.
+
+## Credits
+
+External monitor brightness follows the DDC method from [MonitorControl](https://github.com/MonitorControl/MonitorControl) (MIT License). If you want keyboard brightness keys, volume control and more per-monitor settings, use MonitorControl.
 
 ## License
 
