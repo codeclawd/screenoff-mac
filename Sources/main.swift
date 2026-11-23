@@ -35,6 +35,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         #endif
     }
 
+    func applicationWillTerminate(_ notification: Notification) {
+        brightness.restoreAll()
+    }
+
     @objc private func togglePanel() {
         log.notice("icon clicked, event \(NSApp.currentEvent?.type.rawValue ?? 0, privacy: .public), panel open \(self.panel != nil, privacy: .public)")
         if panel != nil {

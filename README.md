@@ -31,7 +31,7 @@ xattr -dr com.apple.quarantine /Applications/ScreenOff.app
 
 Click the power icon, then **Sleep Display**. Move the mouse or press a key to wake the screen.
 
-Drag a display's slider to change its brightness. This works on external monitors too, which macOS can't dim on its own. ScreenOff talks to the monitor over the cable (DDC/CI), the same way the monitor's own buttons change it.
+Drag a display's slider to change its brightness. This works on external monitors too, which macOS can't dim on its own. ScreenOff talks to the monitor over the cable (DDC/CI), the same way the monitor's own buttons change it. Many monitors still glow at brightness 0, so the bottom of the slider also lowers the monitor's contrast. ScreenOff puts your contrast back when you drag up or quit.
 
 Tick **Open at Login** in the panel to start ScreenOff with your Mac. Press Esc or click elsewhere to close the panel.
 
